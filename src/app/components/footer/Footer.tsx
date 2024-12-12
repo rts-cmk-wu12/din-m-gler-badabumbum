@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Info from './Info';
 import IconCall from '/public/icon-call.svg';
-import iconEmail from '/public/email.svg';
-import iconLocation from '/public/icon-location.svg';
+import IconEmail from '/public/icon-email.svg';
+import IconLocation from '/public/icon-location.svg';
 
 export default function Footer() {
   return (
@@ -16,8 +16,8 @@ export default function Footer() {
       {/* Contact Info */}
       <div className="space-y-2">
         <Info icon={IconCall} mainText="Ring til os" subText="+45 7070 4000" />
-        <Info icon={iconEmail} mainText="Send en mail" subText="4000@dinmaegler.com" />
-        <Info icon={iconLocation} mainText="Butik" subText="Stændertorvet 78, 4000 Roskilde" />
+        <Info icon={IconEmail} mainText="Send en mail" subText="4000@dinmaegler.com" />
+        <Info icon={IconLocation} mainText="Butik" subText="Stændertorvet 78, 4000 Roskilde" />
       </div>
     </footer>
   );
