@@ -1,10 +1,24 @@
 import Image from 'next/image';
+import Info from './Info';
+import IconCall from '/public/icon-call.svg';
+import iconEmail from '/public/email.svg';
+import iconLocation from '/public/icon-location.svg';
 
 export default function Footer() {
   return (
-    <>
-      <Image src="/dinMaegler.svg" alt="Din Maegler" height={500} width={500} />
-      <p className="text-style-paragraph-para-01">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.</p>
-    </>
+    <footer className="bg-background p-6">
+      {/* About & Logo */}
+      <div className="mb-8">
+        <Image src="/dinMaegler.svg" alt="Din Maegler" height={100} width={100} className="mb-4" />
+        <p className="text-style-paragraph-para-01 text-paragraph-para-01">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.</p>
+      </div>
+
+      {/* Contact Info */}
+      <div className="space-y-2">
+        <Info icon={IconCall} mainText="Ring til os" subText="+45 7070 4000" />
+        <Info icon={iconEmail} mainText="Send en mail" subText="4000@dinmaegler.com" />
+        <Info icon={iconLocation} mainText="Butik" subText="Stændertorvet 78, 4000 Roskilde" />
+      </div>
+    </footer>
   );
 }
