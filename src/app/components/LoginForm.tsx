@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 
 export const LoginForm = () => {
   const { login, isLoading, error } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await login({ identifier: email, password });
-      // Handle successful login (e.g., redirect)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      // Error is handled by useAuth hook
-    }
-  };
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      try {
+        await login({ identifier: email, password });
+        // Handle successful login (e.g., redirect)
+      } catch (err) {
+        // Error is handled by useAuth hook
+      }
+    },
+    [email, password, login]
+  );
+
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, []);
+
+  const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
@@ -22,14 +33,14 @@ export const LoginForm = () => {
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email
         </label>
-        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
+        <input id="email" type="email" value={email} onChange={handleEmailChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
       </div>
 
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
           Password
         </label>
-        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
+        <input id="password" type="password" value={password} onChange={handlePasswordChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
       </div>
 
       {error && <div className="text-red-600 text-sm">{error}</div>}
