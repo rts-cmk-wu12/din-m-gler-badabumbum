@@ -6,7 +6,7 @@ import IconLocation from '/public/icon-location.svg';
 
 export default function Footer() {
   return (
-    <footer className="bg-background p-6">
+    <footer className="bg-slate-100 p-6">
       {/* About & Logo */}
       <div className="mb-8">
         <Image src="/dinMaegler.svg" alt="Din Maegler" height={100} width={100} className="mb-4" />
