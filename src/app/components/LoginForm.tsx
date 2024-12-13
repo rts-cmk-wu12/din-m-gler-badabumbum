@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth } from '../hooks/useAuth'; // find dem lige hurtigt
 
 export const LoginForm = () => {
   const { login, isLoading, error } = useAuth();
