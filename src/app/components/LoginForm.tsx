@@ -12,6 +12,7 @@ export const LoginForm = () => {
       try {
         await login({ identifier: email, password });
         // Handle successful login (e.g., redirect)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         // Error is handled by useAuth hook
       }
