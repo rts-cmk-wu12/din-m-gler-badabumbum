@@ -3,7 +3,7 @@ import React from 'react';
 
 const Info: React.FC<InfoProps> = ({ icon, element, mainText, subText }) => {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-4s">
       {icon ? icon : element}
       <div>
         <p className="font-bold text-style-paragraph-para-01 text-paragraph-para-01">{mainText}</p>
