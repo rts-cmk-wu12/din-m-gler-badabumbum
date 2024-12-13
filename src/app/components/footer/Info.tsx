@@ -1,13 +1,13 @@
 import { InfoProps } from './types';
 import React from 'react';
 
-const Info = ({ icon, mainText, subText }: InfoProps) => {
+const Info: React.FC<InfoProps> = ({ icon, element, mainText, subText }) => {
   return (
-    <div className="flex items-center gap-4 py-3">
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-color-01 text-white">{icon}</div>
-      <div className="flex flex-col">
-        <p className="text-style-paragraph-para-02 text-paragraph-para-01">{mainText}</p>
-        <p className="text-style-paragraph-para-03 text-paragraph-para-02">{subText}</p>
+    <div className="flex items-center space-x-4">
+      {icon ? icon : element}
+      <div>
+        <p className="font-bold text-style-paragraph-para-01 text-paragraph-para-01">{mainText}</p>
+        <p className="text-style-paragraph-para-01 text-paragraph-para-01">{subText}</p>
       </div>
     </div>
   );

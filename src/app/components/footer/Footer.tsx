@@ -15,9 +15,9 @@ export default function Footer() {
 
       {/* Contact Info */}
       <div className="space-y-2">
-        <Info icon={IconCall} mainText="Ring til os" subText="+45 7070 4000" />
-        <Info icon={IconEmail} mainText="Send en mail" subText="4000@dinmaegler.com" />
-        <Info icon={IconLocation} mainText="Butik" subText="Stændertorvet 78, 4000 Roskilde" />
+        <Info icon={<Image src={IconCall} alt="Call Icon" />} mainText="Ring til os" subText="+45 7070 4000" />
+        <Info icon={<Image src={IconEmail} alt="Email Icon" />} mainText="Send en mail" subText="4000@dinmaegler.com" />
+        <Info icon={<Image src={IconLocation} alt="Location Icon" />} mainText="Butik" subText="Stændertorvet 78, 4000 Roskilde" />
       </div>
     </footer>
   );

@@ -1,5 +1,6 @@
 export interface InfoProps {
-  icon: string;
+  icon?: React.ReactNode;
+  element?: React.ReactNode;
   mainText: string;
   subText: string;
 }
