@@ -1,9 +1,40 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Button } from '@shadcn/ui/button';
-import { Input } from '@shadcn/ui/input';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import { Mail, Phone } from 'lucide-react';
+
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+  variant?: 'default' | 'ghost';
+}
+
+const Card: React.FC<CardProps> & {
+  Header: typeof CardHeader;
+  Content: typeof CardContent;
+  Footer: typeof CardFooter;
+} = ({ children, className, variant = 'default' }) => {
+  return <div className={`rounded-lg ${variant === 'ghost' ? '' : 'border bg-card shadow-sm'} text-card-foreground ${className || ''}`}>{children}</div>;
+};
+
+const CardHeader: React.FC<CardProps> = ({ children, className }) => {
+  return <div className={`flex flex-col space-y-1.5 p-6 ${className || ''}`}>{children}</div>;
+};
+
+const CardContent: React.FC<CardProps> = ({ children, className }) => {
+  return <div className={`p-6 pt-0 ${className || ''}`}>{children}</div>;
+};
+
+const CardFooter: React.FC<CardProps> = ({ children, className }) => {
+  return <div className={`flex items-center p-6 pt-0 ${className || ''}`}>{children}</div>;
+};
+
+Card.Header = CardHeader;
+Card.Content = CardContent;
+Card.Footer = CardFooter;
+
+export { Card, CardHeader, CardContent, CardFooter };
 
 export const metadata: Metadata = {
   title: 'Login | DIN MÆGLER',
@@ -26,7 +57,7 @@ export default function LoginPage() {
               +45 7070 4000
             </Link>
           </div>
-          <Button variant="ghost" className="text-white hover:text-gray-200" asChild>
+          <Button className="text-white hover:text-gray-200">
             <Link href="/login">Log ind</Link>
           </Button>
         </div>
@@ -84,13 +115,13 @@ export default function LoginPage() {
                   <label htmlFor="email" className="text-sm font-medium">
                     Email
                   </label>
-                  <Input id="email" type="email" placeholder="Email" required />
+                  <Input id="email" type="email" placeholder="din@email.dk" required />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="password" className="text-sm font-medium">
                     Password
                   </label>
-                  <Input id="password" type="password" placeholder="Password" required />
+                  <Input id="password" type="password" placeholder="••••••••" required />
                 </div>
                 <Button type="submit" className="w-full bg-[#15233E]">
                   Log ind
@@ -98,20 +129,8 @@ export default function LoginPage() {
               </div>
             </form>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <div className="text-sm text-center">Log ind med</div>
-            <div className="grid grid-cols-3 gap-4 w-full">
-              <Button variant="outline" className="bg-[#DB4437] text-white hover:bg-[#DB4437]/90">
-                Google
-              </Button>
-              <Button variant="outline" className="bg-[#4267B2] text-white hover:bg-[#4267B2]/90">
-                Facebook
-              </Button>
-              <Button variant="outline" className="bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]/90">
-                Twitter
-              </Button>
-            </div>
-            <div className="text-sm text-center">
+          <CardFooter className="text-sm text-center">
+            <div>
               Har du ikke en konto?{' '}
               <Link href="/signup" className="text-blue-600 hover:underline">
                 Opret bruger
